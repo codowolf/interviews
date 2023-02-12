@@ -17,8 +17,12 @@ public static int binarySearch(int[] arr, int target) {
             end = mid - 1;
         }
     }
+    // When loop exits, end < start, so
     // Everything left of start is less than target
     // Everything right of end (including start) is greater than or equal to target
     return start;
 }
 ```
+- So in the above algo, the returned value is the first value greater than or equal to target. 
+- If target is 5, then in an array `[1,2,5,5,10,11]` it returns index of 1st 5
+- Similarly, in array `[1,2,6,10,11]` it returns index of 6
