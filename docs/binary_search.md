@@ -33,3 +33,14 @@ public static int binarySearch(int[] arr, int target) {
   3. `target = 6`, `arr = [3, 3, 5]` --> `3` (arr.length)
   4. `target = 2`, `arr = [3, 3, 5]` --> `0`
 - **NOTE** : For general usage, the output of this program should still be checked for validity. As you can see above, 3 is `index out of bound` and 4 is first item greater than target item.
+
+## Variations
+1. `if (arr[mid] < target) start = mid + 1;`
+   - return `start; // or end + 1;`
+     - returns first items equal or greater than target
+   - return `start - 1; // or end;`
+     - returns first item less than target
+3. `if (arr[mid] <= target) start = mid + 1`
+   - return `start; // or end + 1;`
+     - returns first item ~~equal or~~ greater than target
+   - and so on ... 
