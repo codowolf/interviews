@@ -1,7 +1,5 @@
 # Tips
-- When the loop ends, the indicators are "low" and "high"
 - Follow this link on stackoverflow - https://stackoverflow.com/a/54374256 
-- int low = 0, high = Integer.MAX_VALUE;
 
 # Code
 ## Binary Search (Java)
