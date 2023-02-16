@@ -51,6 +51,8 @@ These are the problems where you have to minimize the maximum value
 
 Usually an array is given with an integer `k`
 
+**NOTE**: this problem only makes sense if ordering of the elements has to be maintained. Otherwise, sorting the array makes sense. 
+
 ```java
 public int splitArray(int[] nums, int k)
 
