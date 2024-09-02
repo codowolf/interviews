@@ -90,3 +90,20 @@ The len(level_nodes) list is basically the max depth reached so far.
 [637. Average of levels in Binary Tree](https://leetcode.com/problems/average-of-levels-in-binary-tree/description/?)
 
 
+## BST
+### Is Valid BST?
+- Each node should be within a range; 
+    - pass left bound as "low" to right node
+    - pass right bound as "high" to left node
+```python
+    def isValidBST(self, root: Optional[TreeNode]) -> bool:
+        def is_valid(root, low, high):
+            if not root:
+                return True
+            if not (low < root.val < high):
+                return False
+
+            return is_valid(root.left, low, root.val) and is_valid(root.right, root.val, high)
+        
+        return is_valid(root, -inf, inf)
+```
