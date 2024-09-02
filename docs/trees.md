@@ -95,6 +95,8 @@ The len(level_nodes) list is basically the max depth reached so far.
 - Each node should be within a range; 
     - pass left bound as "low" to right node
     - pass right bound as "high" to left node
+- This is also a standard template to handle BST problems
+
 ```python
     def isValidBST(self, root: Optional[TreeNode]) -> bool:
         def is_valid(root, low, high):
@@ -106,4 +108,17 @@ The len(level_nodes) list is basically the max depth reached so far.
             return is_valid(root.left, low, root.val) and is_valid(root.right, root.val, high)
         
         return is_valid(root, -inf, inf)
+```
+- But keep in mind that the bounds passed are not always the next item in the flattend array. For example in the 
+below tree where the in-order is 1,2,3,4,5,6,7,8,9, the print(low, root.val, high) in traversal looks like this
+```shell
+    -inf 4 inf
+    -inf 2 4
+    -inf 1 2
+    2 3 4
+    4 7 inf
+    4 5 7
+    5 6 7
+    7 9 inf
+    7 8 9
 ```
