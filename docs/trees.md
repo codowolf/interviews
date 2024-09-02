@@ -41,3 +41,52 @@ def dfs(root: Node, p: Node) -> list[Node]:
 **Preorder Traversa** : root → left → right
 
 **Postorder Traversal** : left → right → root
+
+## Level-Order traversal / BFS
+```python
+def bfs(root):
+    from collections import deque
+    q = deque()
+    q.append(root)
+    while q:
+        n = len(q)
+        for _ in range(n):
+            node = q.popleft()
+            if node.left:
+                q.append(node.left)
+            if node.right:
+                q.append(node.right)
+```
+
+In some cases you want to do dfs and also keep track of depth. 
+
+[199. Binary Tree Right Side View](https://leetcode.com/problems/binary-tree-right-side-view/description/?)
+
+For this problem, the right side view is do-dfs from right, and every first time entering a new level is the right most node.
+The len(level_nodes) list is basically the max depth reached so far.
+
+
+Another example
+[637. Average of levels in Binary Tree](https://leetcode.com/problems/average-of-levels-in-binary-tree/description/?)
+```python
+# compute average of each level using dfs
+    def averageOfLevels(self, root: Optional[TreeNode]) -> List[float]:
+        level_avgs = []  # keeps track of averages at each depth / level
+
+        def avgs(root, level):
+            if not root:
+                return 0
+            
+            if level >= len(level_avgs):  # this means the first time entering new level
+                level_avgs.append((root.val, 1))  # saves avg,node-count
+            else:
+                avg, count = level_avgs[level]
+                new_avg = ((avg * count) + root.val) / (count + 1)
+                level_avgs[level] = (new_avg, count + 1)
+            
+            avgs(root.left, level + 1)
+            avgs(root.right, level + 1)
+        
+        avgs(root, 0)
+        return [k for k, v in level_avgs]
+
