@@ -111,14 +111,16 @@ The len(level_nodes) list is basically the max depth reached so far.
 ```
 - But keep in mind that the bounds passed are not always the next item in the flattend array. For example in the 
 below tree where the in-order is 1,2,3,4,5,6,7,8,9, the print(low, root.val, high) in traversal looks like this
-```shell
-    -inf 4 inf
-    -inf 2 4
-    -inf 1 2
-    2 3 4
-    4 7 inf
-    4 5 7
-    5 6 7
-    7 9 inf
-    7 8 9
-```
+<img width="309" alt="Screenshot 2024-09-02 at 12 04 13 PM" src="https://github.com/user-attachments/assets/2fbe7ac9-c892-4801-9a88-ea92aba311ee">
+
+| **Print Before Calling Recursively (Pre Order)** | **Print After Left Traversal (In Order)** |
+|--------------------------------------|-------------------------------------------|
+| -inf 4 inf                           | -inf 1 2                                  |
+| -inf 2 4                             | -inf 2 4                                  |
+| -inf 1 2                             | 2 3 4                                     |
+| 2 3 4                                | -inf 4 inf                                |
+| 4 7 inf                              | 4 5 7                                     |
+| 4 5 7                                | 5 6 7                                     |
+| 5 6 7                                | 4 7 inf                                   |
+| 7 9 inf                              | 7 8 9                                     |
+| 7 8 9                                | 7 9 inf                                   |
