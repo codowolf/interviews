@@ -13,3 +13,10 @@
     - `add` / `remove`
 - **heapq**
     - `heapify(some_list, key=lambda x: x[0])`
+
+- **2D array**
+    - `visited = [[0] * m] * n` ❌  `visited = [[0] * n] * m` ✅
+    
+    - `visited = [[0] * n] * m` ❌ `visited = [[0] * n for _ in range(m)]` ✅ 
+        
+        
