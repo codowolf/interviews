@@ -31,4 +31,6 @@
     - `visited = [[0] * m] * n` ❌  `visited = [[0] * n] * m` ✅
     
     - `visited = [[0] * n] * m` ❌ `visited = [[0] * n for _ in range(m)]` ✅ 
-        
+
+- **random**
+    - `random.randint(a,b)  # a and b are inclusive`
