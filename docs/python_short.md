@@ -14,9 +14,8 @@
     - you can also add tuples to set `myset.add((1,2))`, but not lists or any other mutable objects. Tuples are immutable
     - can do `& (union)`, `- (diff)`, `^ (symmetric diff)`
 - **heapq**
-    - `some_list = [(4,'bob'),(3,'ana'),(5,'eva')]`    
-    - `heapq.heapify(some_list, key=lambda x: x[0])  # minheap`
-    - `heapq.heapify(some_list, key=lambda x: -x[0])  # maxheap`
+    - `some_list = [(4,'bob'),(3,'ana'),(5,'eva')]`
+    - NOTE: You CANNOT use key=lambda x: x[0] on heapq; it only works for sorted
 
 | **Operation**                       | **Description**                                | **Time Complexity** |
 |--------------------------------------|------------------------------------------------|---------------------|
