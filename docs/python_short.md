@@ -14,7 +14,19 @@
     - you can also add tuples to set `myset.add((1,2))`, but not lists or any other mutable objects. Tuples are immutable
     - can do `& (union)`, `- (diff)`, `^ (symmetric diff)`
 - **heapq**
-    - `heapify(some_list, key=lambda x: x[0])`
+    - `some_list = [(4,'bob'),(3,'ana'),(5,'eva')]`    
+    - `heapq.heapify(some_list, key=lambda x: x[0])  # minheap`
+    - `heapq.heapify(some_list, key=lambda x: -x[0])  # maxheap`
+
+| **Operation**                       | **Description**                                | **Time Complexity** |
+|--------------------------------------|------------------------------------------------|---------------------|
+| `heapq.heappush(heap, item)`         | Add an element to the heap                     | **O(log n)**         |
+| `heapq.heappop(heap)`                | Remove and return the smallest element         | **O(log n)**         |
+| `heapq.heapify(list)`                | Convert a list into a heap                     | **O(n)**             |
+| `heapq.heappushpop(heap, item)`      | Push an element and pop the smallest           | **O(log n)**         |
+| `heapq.nlargest(n, iterable)`        | Return the `n` largest elements                | **O(n log len(iterable))** |
+| `heapq.nsmallest(n, iterable)`       | Return the `n` smallest elements               | **O(n log len(iterable))** |
+
 
 - **2D array**
     - `visited = [[0] * m] * n` ❌  `visited = [[0] * n] * m` ✅
