@@ -1,8 +1,12 @@
 ## Topological Sorting
+Helps in identifying if graph has no cycles; Helps in identifying the order of valid sequence (for cases with pre-requisites)
+
 **Steps for Topological Sort (using Kahn’s Algorithm):**
 1. **Identify vertices with no incoming edges**: These are vertices that have no dependencies and can be processed first.
 2. **Remove a vertex and its outgoing edges**: After processing a vertex, remove it from the graph and reduce the in-degree of its neighbors.
 3. **Repeat**: Continue removing vertices with zero in-degree until all vertices are processed. If at any point no such vertex exists and the graph still has edges, this indicates the graph has cycles and cannot be topologically sorted.
+
+**Note: you can also implement level order bfs, but it should only be done case by case. For instance, course schedule III can't be solved by level order. It's a DP problem.**
 ```python
 """
 You need 3 data structures
