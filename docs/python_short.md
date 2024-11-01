@@ -34,3 +34,6 @@
 
 - **random**
     - `random.randint(a,b)  # a and b are inclusive`
+
+- **strings**
+    - `ord(ch) - ord('a')` can be used to track ascii values
