@@ -36,3 +36,18 @@ def has_no_cycle(n: int, edges: List[List[int]]) -> bool:
     return not any(indegree)
 ```
 [204. Course Schedule](https://leetcode.com/problems/course-schedule/description/)
+
+## Minimal Spanning Tree
+- Undirected graph
+- Connecting all the nodes such that the cost in minimal 
+- Helps find min cost to connect all nodes
+- **DOES NOT** mean shortest distance between two nodes
+- Only means sum of all edge weights are minimum
+- Is not unique. There could be multiple selection of edges that lead to minimal
+- Only applies to connected graph. For disconnected, it leads to multiple graphs (forest) 
+### Krsukal's MST
+- Sort all edges
+- For each edge, check if nodes are connected. (Union Find)
+- The idea is, for already connected nodes, we want to avoid loops
+- If not connected, connect them
+- when all edges are processed, or all nodes are connected, you're done.

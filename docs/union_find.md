@@ -26,5 +26,7 @@
         return temp
     ```
 5. connected(p, q) - checks if two components are connected
-6. path compression - Compressing the path while "find" by setting grandchildren as children. This ensures that at any point, the depth of tree is always a max of 2. 
-7. using integers - the idea is to have unique nodes because we use dictionary to keep parents. If integers are not unique, you can quickly create a map of unique integer IDs for the object
+6. path compression - Compressing the path while "find" by setting grandchildren as children. 
+7. This doesn't necessarily mean that depth is a fixed size. Because, when union happens on two root nodes, the path compression doesn't kick in.
+8. If union of roots keep happening, then max depth can be number of unions (until all nodes are connected) into a single component
+9. using integers - the idea is to have unique nodes because we use dictionary to keep parents. If integers are not unique, you can quickly create a map of unique integer IDs for the object
