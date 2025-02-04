@@ -10,10 +10,9 @@ def binary_search(arr, int target):
   while low <= high:  # to handle case where arr=[1]
     mid = low + (high - low) // 2  # note that mid is always "strictly" decreasing until it's 1
 
-    if target <= arr[mid]:
-                      # this is the answer block because of "="
-      high = mid - 1  # when answer if found, we still go left
-    else:             # (so final answer is high + 1 or low)
+    if target <= arr[mid]:  # this is the answer block because of "="
+      high = mid - 1        # when answer if found, we still go left
+    else:                   # (so final answer is high + 1 or low)
       low = mid + 1
   
   return low  # or high + 1
