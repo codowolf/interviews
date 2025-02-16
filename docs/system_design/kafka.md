@@ -22,9 +22,9 @@ Kafka is a distributed, fault-tolerant, high-throughput streaming platform. It's
 2. **1 consumer is assigned to 1 partition**
 	1. Example, if there are 10M messages per topic, spread across 10 partitions, then only 10 consumers can be assigned. 
 3. **Hot partition (more applicable on write to partition rather than reads)**
-	2. If one of the keys are having a LOT of messages, it will be written to a same partition, meaning, that partition becomes a HOT partition
-	3. This leads to **lag** on reads, because one consumer can only do so much sequentially (you can read parallel)
-	4. What to do? 
+	1. If one of the keys are having a LOT of messages, it will be written to a same partition, meaning, that partition becomes a HOT partition
+	2. This leads to **lag** on reads, because one consumer can only do so much sequentially (you can read parallel)
+	3. What to do? 
 		1. Read messages in batches, and put into a separate queue for async processing, and mark as processed, as this will speed up at least the reading. Processing can be done later
 		2. Back Pressure — just have producer logic to write or slowdown if there's a lag
 		3. AVOID this — Prevention better than cure
