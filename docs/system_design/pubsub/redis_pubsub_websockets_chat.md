@@ -16,17 +16,19 @@
 		- tell chat server to mark the message as not delivered-> offine 
 
 
-![[Pasted image 20250216162054.png]]
+![User Connection And Reconnection](chat_img3.png "User Connection")
 1. User connects to a WSS
 2. WSS checks redis user groups to subscribe to
 3. Subscribes to all groups, and starts to receive any new message
 
-![[Pasted image 20250216162544.png]]
+![User New Group Registry](chat_img4.png "User New Group Registry")
 1. while they're connected, a new group is added by chatserver (say they joined a chat room)
 2. WSS is notified of it through pub/sub
 3. WSS subscribes to the new group for that user (same applies for deletion)
 
-![[Pasted image 20250216152343.png]]
+![User Message Publishing](chat_img1.png "User Message Publishing")
+
+![User Disconnected](chat_img2.png "User Disconnected")
 1. when WSS can't find a connection to a user for that particular group 
 2. it tells CS that particular message should go to inbox for later delivery
 
