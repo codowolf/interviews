@@ -44,9 +44,9 @@ def binary_search(arr, int target):
   - everything left is `"strictly less"`
   - everything right is `"strickly increasing"`
     - with duplicates, it's `"non decreasing"`
-- **NOTE**: the final index can still be out of bound, so always check bounds
-  - ex: `tgt=5, arr=[1]`, `output_index=1` out of bound
-  - ex: `tgt=0, arr=[1]`, `output_index=-1` out of bound, but in python this is last index. so be extra careful
+> [!tip] **NOTE**: the final index can still be out of bound, so always check bounds
+ > - ex: `tgt=5, arr=[1]`, `output_index=1` out of bound
+ > - ex: `tgt=0, arr=[1]`, `output_index=-1` out of bound, but in python this is last index. so be extra careful
 
 ### Where the above logic (of bounds) will not be applicable 
 - https://leetcode.com/problems/search-in-rotated-sorted-array/
