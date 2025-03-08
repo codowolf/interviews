@@ -14,9 +14,13 @@ Template for solving problems where you need to keep a count while iterating poi
 
             while window_count[c] > 1:
                 window_count[s[left]] -= 1
-                left = left + 1
+                left += 1
             
             window_size = max(window_size, right - left + 1)
-            right = right + 1
+            right += 1
 
         return window_size
+```
+
+[List of problems of sliding window](https://leetcode.com/problems/frequency-of-the-most-frequent-element/solutions/1175088/c-maximum-sliding-window-cheatsheet-template/?envType=company&envId=facebook&favoriteSlug=facebook-thirty-days)
+
