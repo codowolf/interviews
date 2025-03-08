@@ -1,4 +1,4 @@
-https://leetcode.com/problem-list/mzw3cyy6/ 
+
 
 > [!tip] Main Algo 
 > - Usually consists of a 1d line, and ranges
@@ -33,3 +33,7 @@ def maximumPopulation(self, logs: List[List[int]]) -> int:
   return res
 ```
 
+**Leetcode Guide**
+- https://leetcode.com/discuss/study-guide/2166045/line-sweep-algorithms
+**List of Problems**
+- https://leetcode.com/problem-list/mzw3cyy6/ 
