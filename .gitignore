@@ -9,3 +9,4 @@
 .obsidian/plugins/obsidian-excalidraw-plugin/main.js
 .obsidian/plugins/obsidian-excalidraw-plugin/data.json
 .obsidian/community-plugins.json
+.DS_Store
