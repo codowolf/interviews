@@ -1,3 +1,13 @@
+
+#### Rounds
+- Round 1 — Phone screen design round 
+	- Design Job Scheduler — with recurring jobs
+- Onsite 
+	- Round 2 — Project Deep Dive with slides
+	- Round 3 — Design Limit Order (with brokerage handling orders and matching engine)
+	- Round 4 — Coding
+		- Top 3 referrers shown below
+
 ```python
 from collections import defaultdict, deque
 """
