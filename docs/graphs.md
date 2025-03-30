@@ -1,3 +1,23 @@
+### Important Tips
+BFS
+- Apply BFS at the same time
+	- Problems like shortest path TO all gates with obstacles, or shortest path to something
+	- You can apply BFS from gates. 
+	- But don't apply BFS individually from gates, that takes time.
+	- Instead put ALL gates in DEQ and apply BFS
+	- [01 Matrix](https://leetcode.com/problems/01-matrix/description/)
+- Apply BFS individually 
+	- For problems where we would have a count a visit from each node, then there has to be BFS from each node.
+	- [Shortest Distance from all buildings](https://leetcode.com/problems/shortest-distance-from-all-buildings/description/) Here we need to compute distance from all buildings to the specific land
+
+Recursive DFS vs Topology BFS
+- If a DAG is given as edges, the solutions depend on how you build the graph
+	- DFS helps to backtrack counts back to the parent node
+		- Referral count — basically the root node will have higher count
+	- Topology avoids backtrack and computes at every step
+		- Server load 
+		- Keeping track of indegree becomes important
+		- Use topology only if DFS can't be used (mostly DAG cycle problems)
 ## Topological Sorting
 Helps in identifying if graph has no cycles; Helps in identifying the order of valid sequence (for cases with pre-requisites)
 

@@ -89,7 +89,9 @@ The len(level_nodes) list is basically the max depth reached so far.
 
 [637. Average of levels in Binary Tree](https://leetcode.com/problems/average-of-levels-in-binary-tree/description/?)
 
-
+### Vertical Order Traversal
+[987. Vertical Order Traversal of a Binary Tree](https://leetcode.com/problems/vertical-order-traversal-of-a-binary-tree/)
+- You keep track of both depth + 1 AND horizontal axis (-1 for going left, +1 for going right)
 ## BST
 ### Is Valid BST?
 - Each node should be within a range; 
