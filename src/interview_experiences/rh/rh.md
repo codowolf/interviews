@@ -7,6 +7,13 @@
 	- Round 3 — Design Limit Order (with brokerage handling orders and matching engine)
 	- Round 4 — Coding
 		- Top 3 referrers shown below
+- Result
+	- Reject
+		- TPS design — Great feedback, very engaging conversation
+		- Deep dive — No critical feedback other than "want to check if he's hands-on in other interviews"
+		- Design — Great feedback on the details of idempotency, but some comments on dangling transaction / status management
+			- This could potentially be because of not being able to cover more on transaction execution details — write to db first, then make API call, transaction recover system etc.
+		- Coding — Essentially no tests passed, couldn't complete the code
 
 ```python
 from collections import defaultdict, deque
