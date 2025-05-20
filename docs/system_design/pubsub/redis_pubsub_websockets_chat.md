@@ -32,7 +32,7 @@
 			1. after WSS delivers, it can put in async Q to mark them as delivered.
 
 
-### NOTE — you can read the below to know WHY the above solution is better, but it's just extremely complicated in implementation. Too much statefulness to maintain.
+> [!tip] NOTE — you can read the below to know WHY the above solution is better, but it's just extremely complicated in implementation. Too much statefulness to maintain.
 
 ###### Solution 2 (Complex) Examples of subscribers on Redis
 - A Websocket server can subscribe to messages based on — group_id:region

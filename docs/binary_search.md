@@ -4,18 +4,23 @@
 # Code
 ## Binary Search (Python)
 ```python
-def binary_search(arr, int target):
+def binary_search(arr, target):
   low, high = 0, len(arr) - 1
-
   while low <= high:  # to handle case where arr=[1]
     mid = low + (high - low) // 2  # note that mid is always "strictly" decreasing until it's 1
-
     if target <= arr[mid]:  # this is the answer block because of "="
       high = mid - 1        # when answer if found, we still go left
     else:                   # (so final answer is high + 1 or low)
       low = mid + 1
-  
   return low  # or high + 1
+
+a = binary_search([1,3,5,7,9], 1)
+b = binary_search([1,3,5,7,9], 3)
+c = binary_search([1,3,5,7,9], 5)
+assert a == 0
+assert b == 1
+assert c == 2
+print('done')
 ```
 - Binary search goal is to move towards the answer's half
 - The important to think about is where does low and high stay, when loop exits

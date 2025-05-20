@@ -5,7 +5,7 @@ class TrieNode:
     self.word = None
 
 class Solution:
-  def __init(self):
+  def __init__(self):
     self.root = TrieNode()
 
   def add_word(self, word: str):

@@ -1,0 +1,26 @@
+{
+	"nodes":[
+		{"id":"b23ec7d6c564fedc","x":-528,"y":-133,"width":168,"height":60,"type":"text","text":"payments"},
+		{"id":"ecbf6c9b52fdb102","x":-228,"y":-229,"width":124,"height":60,"type":"text","text":"pay-in"},
+		{"id":"d723d3057df7eb69","x":143,"y":-346,"width":117,"height":60,"type":"text","text":"wallet"},
+		{"id":"c01adc52a6dfa832","x":372,"y":-382,"width":246,"height":133,"type":"text","text":"- tokenization\n- multiple cards\n- card-updater"},
+		{"id":"8813fb401bca4b70","x":372,"y":-231,"width":246,"height":131,"type":"text","text":"- authorization\n- charge\n- disputes"},
+		{"id":"68abc420ac792205","x":112,"y":-195,"width":148,"height":60,"type":"text","text":"payments"},
+		{"id":"d1808e0ae87ab482","x":860,"y":-306,"width":290,"height":171,"type":"text","text":"- stripe\n- braintree\n- first_data\n- amex\n- chase"},
+		{"id":"f1b7536c2f6ba0f0","x":372,"y":-3,"width":243,"height":127,"type":"text","text":"- payout aggregation\n- weekly payouts\n- instant payouts"},
+		{"id":"86b7994f0e040d0f","x":-228,"y":31,"width":125,"height":60,"type":"text","text":"payout"},
+		{"id":"7363b0a1e13e59db","x":-364,"y":298,"width":704,"height":562,"type":"text","text":"- partner integrations\n\t- stripe\n\t- braintree\n\t- amex\n\t- chase\n- transaction routing\n\t- configurable transaction routing\n\t\t- cost savings\n\t\t- provider outages\n- database migration\n\t- mongodb to dynamo\n\t- shadow writes\n\t- shadow reads\n\t- recon of legacy data migration\n- monolith to microservices\n\t- split to 3 different teams\n\t- done along side data migration\n\t- feature parity, dependencies, async handling / recovery"}
+	],
+	"edges":[
+		{"id":"98d0fd52da6a7cff","fromNode":"b23ec7d6c564fedc","fromSide":"right","toNode":"ecbf6c9b52fdb102","toSide":"left"},
+		{"id":"fb5dc1d636336ae4","fromNode":"b23ec7d6c564fedc","fromSide":"right","toNode":"86b7994f0e040d0f","toSide":"left"},
+		{"id":"fceaec87bc9728fe","fromNode":"ecbf6c9b52fdb102","fromSide":"right","toNode":"d723d3057df7eb69","toSide":"left"},
+		{"id":"0673beee3333c635","fromNode":"d723d3057df7eb69","fromSide":"right","toNode":"c01adc52a6dfa832","toSide":"left"},
+		{"id":"d6a82afcaaa86caa","fromNode":"ecbf6c9b52fdb102","fromSide":"right","toNode":"68abc420ac792205","toSide":"left"},
+		{"id":"f8f6570186580bdf","fromNode":"68abc420ac792205","fromSide":"right","toNode":"8813fb401bca4b70","toSide":"left"},
+		{"id":"155cd28d14e69799","fromNode":"86b7994f0e040d0f","fromSide":"right","toNode":"f1b7536c2f6ba0f0","toSide":"left"},
+		{"id":"e63ff5dd2c5e7f4d","fromNode":"f1b7536c2f6ba0f0","fromSide":"right","toNode":"d1808e0ae87ab482","toSide":"left"},
+		{"id":"67e9862b9a9ee1b0","fromNode":"c01adc52a6dfa832","fromSide":"right","toNode":"d1808e0ae87ab482","toSide":"left"},
+		{"id":"5bd18e109cdfcf8a","fromNode":"8813fb401bca4b70","fromSide":"right","toNode":"d1808e0ae87ab482","toSide":"left"}
+	]
+}
