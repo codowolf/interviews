@@ -27,12 +27,7 @@
 		{"id":"df587c5c3ca165c5","type":"text","text":"- location_service\n\t- locations_table\n\t\t- user_id\n\t\t- lat/lng\n\t\t- geo_hash: GSI\n- friends_service\n\t- friends_table\n\t\t- user_id\n\t\t- friend_user_id","x":340,"y":1800,"width":440,"height":307},
 		{"id":"a2fe3ec125d56f1d","type":"text","text":"Deep Dive","x":-66,"y":2077,"width":250,"height":60},
 		{"id":"d2d52b187d2ce7c7","type":"text","text":"1. Publishing\n\t1. location_events are queued in kafka\n\t2. partitioned by user_id\n2. Consuming\n\t1. location_workers reads events\n\t2. computes geo-hash\n\t3. updates **locations_table**\n\t4. locations history stored through CDC pipeline\n3. Searching\n\t1. User comes online \n\t2. User websocket connection to backend\n\t3. Get all user friends for users own geo-hash\n\t\t1. load_by_user_id_and_geo_hash\n\t\t2. filter and rank\n4. Stream-Real time location\n\t1. Upon user coming online\n\t\t1. MY location updates — Setup redis pub-sub\n\t\t\t1. pub their location\n\t\t\t2. load their online friends and subscribe this user to their websocket\n\t\t\t\t1. now their location is being received by online users\n\t\t\t3. subscribe to ALL online user's pub-sub channel\n\t\t\t\t1. now friends location can be recieved by ME\n\n> [!tip] NOTE: Redis pub/sub server **broadcasts the location update** to all subscribers. Meaning, it's push-based, unlike Kafka pub-sub which is pull-based by subscriber\n","x":340,"y":2220,"width":680,"height":760},
-		{"id":"35865c9dd75cd7b1","type":"file","file":"docs/canvas/images/nearby_friends_redis_pub-sb.png","x":1120,"y":2369,"width":726,"height":442},
-		{"id":"c63ffedd1f7c1b6a","type":"text","text":"#### API Design (H4)\n\n- POST v1/users\n\n> [!tip] This is an important Note","x":283,"y":3129,"width":477,"height":191},
-		{"id":"0c8a6ec5988f6f63","type":"text","text":"some_service","x":-120,"y":3320,"width":250,"height":60},
-		{"id":"9e721365a37cfccc","type":"text","text":"### Another Heading (H3)\n\n```python\ndef executable_code(some_str):\n\tprint(f'Hey {some_str=}')\n\nexecutable_code(\"John Doe\")\n```\n\nAbove python code can be executed here (as you can see the result)","x":283,"y":3350,"width":570,"height":328},
-		{"id":"1561983ccc4a3c85","type":"text","text":"##### **Supports all markdown features in this block**\n\n| some | columns | table |\n| ---- | ------- | ----- |\n| with | data    | some  |\n","x":285,"y":3720,"width":473,"height":200},
-		{"id":"1dc19b2d0aaa79b2","type":"file","file":"docs/canvas/images/geo_hash_1_quads.png","x":980,"y":3380,"width":771,"height":594}
+		{"id":"35865c9dd75cd7b1","type":"file","file":"docs/canvas/images/nearby_friends_redis_pub-sb.png","x":1120,"y":2369,"width":726,"height":442}
 	],
 	"edges":[
 		{"id":"5912db8617e7661c","fromNode":"b8719c84360160fb","fromSide":"right","toNode":"137529f77f582245","toSide":"left"},
@@ -61,10 +56,6 @@
 		{"id":"0f9681630503de8f","fromNode":"f3d82ec6540d6a8f","fromSide":"right","toNode":"df587c5c3ca165c5","toSide":"left"},
 		{"id":"01d9c3c350968174","fromNode":"c00fc7cd460c6e8e","fromSide":"right","toNode":"a2fe3ec125d56f1d","toSide":"left"},
 		{"id":"d9ba7d31ba26e85e","fromNode":"a2fe3ec125d56f1d","fromSide":"right","toNode":"d2d52b187d2ce7c7","toSide":"left"},
-		{"id":"dcc9d70fd208bc0d","fromNode":"d2d52b187d2ce7c7","fromSide":"right","toNode":"35865c9dd75cd7b1","toSide":"left"},
-		{"id":"98770aeef7eb0471","fromNode":"0c8a6ec5988f6f63","fromSide":"right","toNode":"c63ffedd1f7c1b6a","toSide":"left"},
-		{"id":"a9fcafe05dfbca15","fromNode":"0c8a6ec5988f6f63","fromSide":"right","toNode":"9e721365a37cfccc","toSide":"left"},
-		{"id":"54634f21c2c00556","fromNode":"0c8a6ec5988f6f63","fromSide":"right","toNode":"1561983ccc4a3c85","toSide":"left"},
-		{"id":"6523b27321c76657","fromNode":"1561983ccc4a3c85","fromSide":"right","toNode":"1dc19b2d0aaa79b2","toSide":"left","label":"geo-hashing"}
+		{"id":"dcc9d70fd208bc0d","fromNode":"d2d52b187d2ce7c7","fromSide":"right","toNode":"35865c9dd75cd7b1","toSide":"left"}
 	]
 }

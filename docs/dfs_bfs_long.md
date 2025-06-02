@@ -1,12 +1,38 @@
 # BFS
+
+## Simple vs Level BFS
+
+#### Simple BFS
+```python
+while q:
+	node = q.popleft()
+	for neighbor in node.neighbors():
+		# some processing
+return
+```
+All nodes are processed **exactly** like level order BFS, **including level by level**, but there's no way to know when the level marking is done, so we can't compute distance by level.
+#### Level Order BFS
+> [!tip] LevelOrder BFS — Used when after each level, there needs some counting to be done
+```python
+while q:
+	N = len(q)
+	for _ in range(N):
+		node = q.popleft()
+		for neighbor in node.neighbors():
+			# some processing
+	distance += 1
+```
+Note that above code has to compute **distance**, so level order is certainly needed here
+
+
 ## Double Ended BFS
 ### Summary of Comparison (with Practical Considerations and Branching Factor)
 
 
-| **Algorithm**        | **Time Complexity**             | **Space Complexity**     | **Practical Considerations**                                                                                      |
-|----------------------|---------------------------------|--------------------------|-------------------------------------------------------------------------------------------------------------------|
-| **Normal BFS**       | O(V + E) / O(b^d)               | O(V)                     | - Explores the entire graph from one end.<br>- Can be inefficient when the target is far from the source.<br>- **Branching**: Searches all nodes up to depth **d**, leading to **O(b^d)** complexity, where **b** is the branching factor.|
-| **Double-Ended BFS** | O(V + E) / O(b^(d/2))           | O(V) (2x memory)         | - Reduces the search space by exploring from both ends.<br>- **Branching**: Effectively cuts depth in half, leading to **O(b^(d/2))** complexity.<br>- Requires two queues and two visited sets.<br>- In practice, explores far fewer nodes, especially in large or sparse graphs. |
+| **Algorithm**        | **Time Complexity**   | **Space Complexity** | **Practical Considerations**                                                                                                                                                                                                                                                       |
+| -------------------- | --------------------- | -------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| **Normal BFS**       | O(V + E) / O(b^d)     | O(V)                 | - Explores the entire graph from one end.<br>- Can be inefficient when the target is far from the source.<br>- **Branching**: Searches all nodes up to depth **d**, leading to **O(b^d)** complexity, where **b** is the branching factor.                                         |
+| **Double-Ended BFS** | O(V + E) / O(b^(d/2)) | O(V) (2x memory)     | - Reduces the search space by exploring from both ends.<br>- **Branching**: Effectively cuts depth in half, leading to **O(b^(d/2))** complexity.<br>- Requires two queues and two visited sets.<br>- In practice, explores far fewer nodes, especially in large or sparse graphs. |
 
 ---
 

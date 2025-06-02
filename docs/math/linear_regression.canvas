@@ -1,0 +1,9 @@
+{
+	"nodes":[
+		{"id":"8b15a9d97cf17530","type":"text","text":"##### How This Relates to Linear Regression\n\nIn linear regression, you don't just have two perfect points. You have a dataset of many (x, y) pairs, and these points usually don't fall perfectly on a straight line.\n\nThe goal of simple linear regression is to find the \"best-fit\" straight line $$y = mx + c$$ that minimizes the distance (or, more precisely, the squared distance) between the line and all the data points. The m and c values that define this best-fit line are called the **coefficients** or **parameters** of the model.\n\nDoes this initial explanation clarify `y = mx + c`, slope, and intercept for you? We can go deeper into the \"best-fit\" line and how it's found if you'd like!","x":-1058,"y":-40,"width":638,"height":360,"color":"3"},
+		{"id":"424faa954208a89d","type":"text","text":"$y = mx + c$","x":-799,"y":-200,"width":120,"height":60}
+	],
+	"edges":[
+		{"id":"2d8454bc4f7969f4","fromNode":"424faa954208a89d","fromSide":"bottom","toNode":"8b15a9d97cf17530","toSide":"top"}
+	]
+}
