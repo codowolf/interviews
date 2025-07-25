@@ -1,0 +1,5 @@
+Design a highly scalable, real-time system for a **staff-level system design interview**. Focus on the core architectural components, data flow, and critical trade-offs for supporting immense concurrent user interactions and maintaining low latency under peak global load, typical of a high-volume, interactive platform. Create mermaid chart for HLD as needed.
+```
+- For 1 million DAU (daily active users) and 100k games, when a user chooses to join a game, they enter a waiting room. The system matches users of similar skill levels, and once the match is successful, the game starts immediately. Additionally, each user should not wait more than 5 minutes; if no match is found, the game should start right away. The user's skill level can be obtained through an API with values ranging from 0 to 100.
+- Design a game matching system that needs to scale to match thousands of games. It should handle bursts of data, which may require implementing a message queue system. Consider regional aspects, such as server clusters in different regions. Also, discuss how servers and clients will connect, including how this loop works.
+```

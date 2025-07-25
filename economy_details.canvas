@@ -1,6 +1,0 @@
-{
-	"nodes":[
-		{"id":"bcea76d867dead25","x":120,"y":40,"width":591,"height":398,"type":"text","text":"| Category                      | Amount (Approx.) | % of Total Spending |\n|--------------------------------|------------------|---------------------|\n| Social Security               | $1.46 trillion   | 21.6%               |\n| Health (Medicare & Medicaid)   | $1.79 trillion   | 26.5%               |\n| National Defense              | $874 billion     | 12.9%               |\n| Net Interest on Debt          | $882 billion     | 13.1%               |\n| Income Security               | $671 billion     | 9.9%                |\n| Veterans' Benefits & Services | $325 billion     | 4.8%                |\n| Education                     | $305 billion     | 4.5%                |\n| Transportation                | $137 billion     | 2.0%                |\n| Other                         | $311 billion     | 4.6%                |\n| **Total**                     | **$6.75 trillion**| **100%**            |\n"}
-	],
-	"edges":[]
-}

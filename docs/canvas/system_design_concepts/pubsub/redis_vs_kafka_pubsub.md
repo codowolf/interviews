@@ -1,5 +1,5 @@
 
-### **1. Push vs. Pull: Kafka vs. Redis Pub/Sub**
+### 1. Push vs. Pull: Kafka vs. Redis Pub/Sub
 
 | **Feature**               | **Kafka (Pull-Based)**                                           | **Redis Pub/Sub (Push-Based)**                              |
 | ------------------------- | ---------------------------------------------------------------- | ----------------------------------------------------------- |
@@ -11,18 +11,18 @@
 
 ---
 
-### **2. When to Use Which (or Both)**  
-#### **Redis Pub/Sub Use Cases**  
+### 2. When to Use Which (or Both)
+#### Redis Pub/Sub Use Cases  
 1. **Real-Time Dashboards**: Live metrics for active users.  
 2. **Chat/Messaging**: Instant delivery to online users.  
 3. **Game State Updates**: Low-latency player position sync.  
 
-#### **Kafka Use Cases**  
+#### Kafka Use Cases 
 4. **Event Sourcing**: Rebuild state from a log (e.g., order history).  
 5. **Audit Logs**: Persist all actions for compliance.  
 6. **Stream Processing**: Join, filter, or aggregate events (e.g., KSQL, Flink).  
 
-#### **Hybrid Architectures**  
+#### Hybrid Architectures  
 - **Real-Time + Durability**:  
   ```plaintext  
   WebSocket Server → Publish to Redis Pub/Sub (for live subscribers)  
@@ -33,23 +33,23 @@
 
 ---
 
-### **3. Scalability Patterns**  
-#### **Redis Pub/Sub Scaling**  
+### 3. Scalability Patterns  
+#### Redis Pub/Sub Scaling  
 - **Vertical Scaling**: Upgrade Redis nodes (RAM/CPU).  
 - **Horizontal Scaling**:  
   - **Shard Channels**: Distribute channels across Redis clusters.  
   - **Proxy Layer**: Use Envoy/Nginx to route traffic to shards.  
 
-#### **Kafka Scaling**  
+#### Kafka Scaling  
 - **Add Partitions**: Increase parallelism for a topic.  
 - **Add Brokers**: Scale out the cluster.  
 - **Tiered Storage**: Offload older data to S3 (Kafka 2.8+).  
 
 ---
 
-### **4. Staff Engineer Checklist**  
+### 4. Staff Engineer Checklist 
 1. **Latency vs. Durability**:  
-   - Use Redis if latency <10ms is critical.  
+   - Use Redis if `latency <10ms` is critical.  
    - Use Kafka if messages must survive failures.  
 2. **Cost**:  
    - Redis: Cheaper for small-scale real-time systems.  
@@ -63,7 +63,7 @@
 
 ---
 
-### **7. Interview Scenarios**  
+### 5. Interview Scenarios  
 **Question**: *"Design a live sports scoreboard for 10M users."*  
 - **Redis Pub/Sub**: Push scores to active users in real-time.  
 - **Kafka**: Log scores for historical stats/analytics.  
