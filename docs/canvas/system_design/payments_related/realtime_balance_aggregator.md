@@ -177,7 +177,6 @@ CockroachDB_Txn -- Replication --> Analytics_Warehouse[Data Lake/Warehouse Offli
     *   **Role:** Entry point for all client requests. Handles SSL termination, rate limiting, authentication (via integration with AuthN/AuthZ service), and basic request validation.
     *   **Scalability:** Horizontally scalable via load balancers.
     *   **Idempotency:** Enforces unique `request_id` per client operation to prevent duplicate processing on retries.
-
 2.  **Payment Service (Microservice):**
     *   **Role:** Orchestrates the currency transfer.
         *   Receives `transfer` requests (sender, receiver, amount, currency, `request_id`).
@@ -190,17 +189,14 @@ CockroachDB_Txn -- Replication --> Analytics_Warehouse[Data Lake/Warehouse Offli
             *   For real-time balance check during authorization, queries `Redis Cluster: Current Balances Cache`.
     *   **Scalability:** Stateless, allowing for easy horizontal scaling.
     *   **Consistency:** Relies on Kafka's ordering and transactional producers for atomicity of event publication, and downstream ledger writer for eventual durability.
-
 3.  **Kafka: Transaction Events Topic:**
     *   **Role:** High-throughput, fault-tolerant, ordered, immutable log of all currency transfers. Acts as the system's central nervous system and source of truth for all downstream processing.
     *   **Scalability:** Sharded by `accountId` (or a hash of `accountId`) for partitioning, ensuring events for a single account are processed in order by a single consumer.
     *   **Technologies:** Apache Kafka or Apache Pulsar.
-
 4.  **Payment Ledger Writer (Service):**
     *   **Role:** Consumes messages from `Kafka: Transaction Events Topic` and persists them to the `Transaction Ledger`.
     *   **Critical:** Ensures exactly-once processing semantic for writing to the ledger by tracking committed offsets or using idempotency keys from the Kafka messages.
     *   **Error Handling:** Retries on transient errors, dead-letter queue for persistent failures.
-
 5.  **CockroachDB / YugabyteDB: Transaction Ledger (Sharded):**
     *   **Role:** The authoritative, immutable, ACID-compliant ledger for all financial transactions.
     *   **Why Distributed SQL (NewSQL)?**
@@ -209,33 +205,30 @@ CockroachDB_Txn -- Replication --> Analytics_Warehouse[Data Lake/Warehouse Offli
         *   **Scalability:** Horizontally scalable while maintaining ACID properties.
         *   **High Availability:** Automatic replication and failover.
     *   **Schema (simplified):**
+	```sql
+	CREATE TABLE transactions (
+		transaction_id UUID PRIMARY KEY DEFAULT gen_random_uuid(),
+		request_id UUID NOT NULL, -- For idempotency tracking
+		sender_account_id BIGINT NOT NULL,
+		receiver_account_id BIGINT NOT NULL,
+		amount DECIMAL(18, 4) NOT NULL,
+		currency VARCHAR(10) NOT NULL,
+		timestamp TIMESTAMPTZ NOT NULL DEFAULT now(),
+		status VARCHAR(20) NOT NULL, -- 'COMPLETED', 'FAILED', 'PENDING'
+		type VARCHAR(20) NOT NULL, -- 'TRANSFER_IN', 'TRANSFER_OUT' (for easier querying of in/out)
+		-- Add index on (sender_account_id, timestamp) and (receiver_account_id, timestamp)
+		INDEX idx_sender_ts (sender_account_id, timestamp DESC),
+		INDEX idx_receiver_ts (receiver_account_id, timestamp DESC),
+		UNIQUE (request_id) -- Ensures idempotency
+	);
+	-- For tracking current balance (can be eventually consistent and derived)
+	-- In a real distributed SQL DB, this could be kept in the same logical DB
+	-- but might have different sharding/access patterns.
+	-- More likely this is a *derived* value from an event stream.
+	-- For simplicity, let's assume it's in a separate, eventually consistent store.
+	```
 
-    ```sql
-CREATE TABLE transactions (
-	transaction_id UUID PRIMARY KEY DEFAULT gen_random_uuid(),
-	request_id UUID NOT NULL, -- For idempotency tracking
-	sender_account_id BIGINT NOT NULL,
-	receiver_account_id BIGINT NOT NULL,
-	amount DECIMAL(18, 4) NOT NULL,
-	currency VARCHAR(10) NOT NULL,
-	timestamp TIMESTAMPTZ NOT NULL DEFAULT now(),
-	status VARCHAR(20) NOT NULL, -- 'COMPLETED', 'FAILED', 'PENDING'
-	type VARCHAR(20) NOT NULL, -- 'TRANSFER_IN', 'TRANSFER_OUT' (for easier querying of in/out)
-	-- Add index on (sender_account_id, timestamp) and (receiver_account_id, timestamp)
-	INDEX idx_sender_ts (sender_account_id, timestamp DESC),
-	INDEX idx_receiver_ts (receiver_account_id, timestamp DESC),
-	UNIQUE (request_id) -- Ensures idempotency
-);
-
--- For tracking current balance (can be eventually consistent and derived)
--- In a real distributed SQL DB, this could be kept in the same logical DB
--- but might have different sharding/access patterns.
--- More likely this is a *derived* value from an event stream.
--- For simplicity, let's assume it's in a separate, eventually consistent store.
-```
-
-
-* *Sharding Strategy:** Shard by `account_id` (or a consistent hash of it) to collocate all transactions and derived balances for a given account on the same shard/region where possible.
+	- **Sharding Strategy:** Shard by `account_id` (or a consistent hash of it) to collocate all transactions and derived balances for a given account on the same shard/region where possible.
 
 ### 4.2. Real-time Balance & Query Processing (CQRS Pattern)
 
