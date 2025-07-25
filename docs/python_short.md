@@ -41,3 +41,6 @@
 
 - **strings**
     - `ord(ch) - ord('a')` can be used to track ascii values
+- **loops**
+	- reverse — `for i in range(n - 1, -1, -1)`
+	- 

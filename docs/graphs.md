@@ -1,16 +1,20 @@
-## Important Tips
-BFS
+# Important Tips
+## BFS Bulk(pruning) vs Individual
 - Apply BFS at the same time
-	- Problems like shortest path TO all gates with obstacles, or shortest path to something
-	- You can apply BFS from gates. 
-	- But don't apply BFS individually from gates, that takes time.
-	- Instead put ALL gates in DEQ and apply BFS
-	- [01 Matrix](https://leetcode.com/problems/01-matrix/description/)
+	- Problems like shortest path to **all gates from all empty points**
+		- https://leetcode.com/problems/walls-and-gates/description/ 
+		- Option 1 — apply BFS from gates
+			- put ALL gates in DEQ and apply BFS
+			- This case, when an empty cell is visited first time, it's already shortest path to it. It doesn't have to be explored by other gates
+			- Meaning, **each cell is visited ONLY once** — This is pruning
+		- Option 2 — apply BFS individually from gates
+			- In this case, each BFS has to visited all cells as there is no way to prune
+	- Another example — [01 Matrix](https://leetcode.com/problems/01-matrix/description/)
 - Apply BFS individually 
-	- For problems where we would have a count a visit from each node, then there has to be BFS from each node.
-	- [Shortest Distance from all buildings](https://leetcode.com/problems/shortest-distance-from-all-buildings/description/) Here we need to compute distance from all buildings to the specific land
+	- For problems where we would have to count a visit from each node, then there has to be BFS from each node.
+	- [Shortest Distance from all buildings](https://leetcode.com/problems/shortest-distance-from-all-buildings/description/) Here we need to compute distance from **ALL** buildings to the specific land, i.e, you have to know the distance to each cell, from each spot. 
 
-Recursive DFS vs Topology BFS
+## Recursive DFS vs Topology BFS
 - If a DAG is given as edges, the solutions depend on how you build the graph
 	- DFS helps to backtrack counts back to the parent node
 		- Referral count — basically the root node will have higher count
@@ -72,3 +76,34 @@ def has_no_cycle(n: int, edges: List[List[int]]) -> bool:
 - The idea is, for already connected nodes, we want to avoid loops
 - If not connected, connect them
 - when all edges are processed, or all nodes are connected, you're done.
+
+# Shortest Path Algos
+
+## Dijkstra's (positive edges ONLY)
+- watch this video — https://www.youtube.com/watch?v=CerlT7tTZfY 
+- BFS, but with **priority queue** instead of normal queue
+- 
+```python
+pq = []
+init_distance = 0
+pq.append((init_distance, start_node))
+
+visited = set()
+min_distances = {node: inf for node in all_nodes}
+min_distances[start_node] = 0
+while pq:
+	distance_to_cur_node, cur_node = heapq.heappop(pq)
+	if cur_node in visited:
+		continue
+	visited.add(cur_node)  # after pop, instead of after add
+	for neighbor, distance_to_neighbor in cur_node.neighbors():
+		total_distance = distance_to_cur_node + distance_to_neighbor
+		if total_distance < min_distances[neighbor]:
+			min_distances[neighbor] = total_distance
+			heapq.heappush(pq, (total_distance, neighbor))	
+		
+```
+
+> [!tip] Note that we add to visited **after pop** instead of **after add**, and this may result in same node added to PQ more than once, but since it's a PQ, the one with shortest distance to it will be popped first, ie explored first. `ex: PQ=[(2, 'node_A'), (3, 'node_B'), (6, 'node_B')]` Here, node_B was reached twice from two paths, at a distance of 3 and 6
+
+## Bellman-Ford (works for negative edges as well)
