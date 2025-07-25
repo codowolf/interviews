@@ -17,6 +17,7 @@ Here are the core requirements:
 ## Proposal
 
 ### Data Model
+```SQL
 Transfers
 - transfer_id
 - sender_account_id
@@ -48,6 +49,8 @@ TransactionSchedule
 TransferLockTable
 - transfer_id
 - ttl
+```
+
 ### Approach
 - transfer_service initiates transfer in initiated state
 	- sync-call to transaction_service create transaction to make sure debit is completed
