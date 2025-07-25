@@ -1,6 +1,7 @@
 # Tips
 - Follow this link on stackoverflow - https://stackoverflow.com/a/54374256 
 
+- This problem covers BOTH scenario, please look at it — https://leetcode.com/problems/find-first-and-last-position-of-element-in-sorted-array/description/
 # Code
 ## Binary Search (Python)
 ```python
