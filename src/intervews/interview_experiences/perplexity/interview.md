@@ -1,0 +1,4 @@
+- TPS
+	- Given a string and a list of stopwords, return the substring that appears before the first occurrence of any stopword.
+	- **Follow-up:**  What if the input is a stream and cannot be fully loaded into memory?
+	- **Follow-up**: What if stream in unordered? 
